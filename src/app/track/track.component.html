@@ -1,21 +1,13 @@
-<div
-      class="track"
-    >
-      <img
-        [src]="data.album.images[1].url"
-        alt="Album logo"
-
-      />
-      <div>
-        <b>{{ data.name }}</b>
-        <p>
-          <b>{{ data.artists[0].name }}</b>
-        </p>
-        <p>{{ data.album.name }}</p>
-        <button (click)="handleClick()"
-
-        >
-          {{ this.selected ? "Deselect" : "Select" }}
-        </button>
-      </div>
-    </div>
+<div class="track">
+  <img [src]="data.album.images[1].url" alt="Album logo" class="album" />
+  <div class="details">
+    <b>{{ data.name }}</b>
+    <p>
+      <b>{{ data.artists[0].name }}</b>
+    </p>
+    <p>{{ data.album.name }}</p>
+    <button (click)="handleClick()" class="selectButton">
+      {{ this.selected ? "Deselect" : "Select" }}
+    </button>
+  </div>
+</div>
