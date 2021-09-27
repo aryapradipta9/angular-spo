@@ -1,1 +1,5 @@
-<app-track (selectEvent)="selectEvent($event)"></app-track>
+<app-track
+  *ngFor="let data of tracksData; index as i"
+  [data]="data"
+  (selectEvent)="selectEvent($event)"
+></app-track>

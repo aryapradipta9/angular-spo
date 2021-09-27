@@ -1,5 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import data from '../single-sample';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 
 @Component({
   selector: 'app-track',
@@ -7,7 +6,7 @@ import data from '../single-sample';
   styleUrls: ['./track.component.css'],
 })
 export class TrackComponent implements OnInit {
-  data = data;
+  @Input() data: any = {};
   selected = false;
   @Output() selectEvent = new EventEmitter<string>();
 
@@ -16,7 +15,8 @@ export class TrackComponent implements OnInit {
   ngOnInit(): void {}
 
   handleClick() {
-    this.selectEvent.emit(data.uri);
+    console.log(this.data.uri);
+    this.selectEvent.emit(this.data.uri);
     this.selected = !this.selected;
   }
 }

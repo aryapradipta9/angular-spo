@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import data from './all-sample';
 
 @Component({
   selector: 'app-root',
@@ -6,6 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
+  tracksData = data;
   title = 'angular-spo';
   selectedSongs: Array<String> = [];
   selectEvent(uri: string) {
@@ -14,5 +16,6 @@ export class AppComponent {
     } else {
       this.selectedSongs = this.selectedSongs.concat([uri]);
     }
+    console.log(this.selectedSongs);
   }
 }
