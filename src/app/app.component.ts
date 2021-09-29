@@ -1,16 +1,20 @@
 import { Component } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import data from './all-sample';
+import { TrackService } from './track.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
+  providers: [TrackService],
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
   tracksData = data;
   title = 'angular-spo';
   selectedSongs: Array<String> = [];
+
+  constructor(private trackService: TrackService) {}
 
   redirectURL() {
     const url = new URL('https://accounts.spotify.com/authorize');
@@ -39,6 +43,9 @@ export class AppComponent {
       const accessToken: string = parsedHash.get('access_token') || '';
       console.log(accessToken);
       localStorage.setItem('token', accessToken);
+      this.trackService
+        .getTracks()
+        .subscribe((resp) => (this.tracksData = resp.tracks.items));
     }
   }
 }
