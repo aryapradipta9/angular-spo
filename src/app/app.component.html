@@ -1,5 +1,8 @@
-<app-track
-  *ngFor="let data of tracksData; index as i"
-  [data]="data"
-  (selectEvent)="selectEvent($event)"
-></app-track>
+<div>
+  <a [href]="redirectURL()">Login to spotify</a>
+  <app-track
+    *ngFor="let data of tracksData; index as i"
+    [data]="data"
+    (selectEvent)="selectEvent($event)"
+  ></app-track>
+</div>
