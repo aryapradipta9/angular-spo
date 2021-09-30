@@ -1,5 +1,8 @@
 <div>
   <a [href]="redirectURL()">Login to spotify</a>
+  <label for="name">Search Query: </label>
+  <button (click)="search()">Search</button>
+  <input id="name" type="text" [formControl]="queryString" />
   <app-track
     *ngFor="let data of tracksData; index as i"
     [data]="data"

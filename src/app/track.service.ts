@@ -18,10 +18,10 @@ export class TrackService {
 
   constructor(private http: HttpClient) {}
 
-  getTracks(): Observable<any> {
+  getTracks(query: string): Observable<any> {
     const params = {
       params: new HttpParams()
-        .set('q', 'tulus')
+        .set('q', query)
         .set('type', 'track')
         .set('market', 'id'),
     };

@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { FormControl } from '@angular/forms';
+
 import { environment } from 'src/environments/environment';
 import data from './all-sample';
 import { TrackService } from './track.service';
@@ -13,6 +15,7 @@ export class AppComponent {
   tracksData = data;
   title = 'angular-spo';
   selectedSongs: Array<String> = [];
+  queryString = new FormControl('');
 
   constructor(private trackService: TrackService) {}
 
@@ -23,6 +26,12 @@ export class AppComponent {
     url.searchParams.set('scope', 'playlist-modify-private');
     url.searchParams.set('redirect_uri', 'http://localhost:4200/');
     return url.toString();
+  }
+
+  search() {
+    this.trackService
+      .getTracks(this.queryString.value)
+      .subscribe((resp) => (this.tracksData = resp.tracks.items));
   }
 
   selectEvent(uri: string) {
@@ -43,9 +52,6 @@ export class AppComponent {
       const accessToken: string = parsedHash.get('access_token') || '';
       console.log(accessToken);
       localStorage.setItem('token', accessToken);
-      this.trackService
-        .getTracks()
-        .subscribe((resp) => (this.tracksData = resp.tracks.items));
     }
   }
 }
